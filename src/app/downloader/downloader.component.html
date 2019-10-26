@@ -1,0 +1,28 @@
+<div style="margin-top: 1rem">
+<mat-card>
+    <form (submit)="onDownloadVideo(downloadForm)" #downloadForm="ngForm">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Video URL"
+          [ngModel]="videoUrl"
+          name="url"
+          required
+          minlength="3"
+          #url="ngModel"
+        />
+        <mat-error *ngIf="url.invalid">Please Enter Url.</mat-error>
+      </mat-form-field>
+      <button
+        style="margin-left: 30px;"
+        mat-raised-button
+        color="accent"
+        type="submit"
+        [disabled]="!downloadForm.valid">
+        Convert Video
+      </button>
+    </form>
+  </mat-card>
+  <hr />
+</div>
