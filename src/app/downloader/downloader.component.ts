@@ -19,8 +19,15 @@ export class DownloaderComponent implements OnInit {
   onDownloadVideo(postForm: NgForm) {
     console.log(postForm);
     const linkObj = new Link();
-    linkObj.videoLink = postForm.value.url;
+    linkObj.videoLink = this.parseFileLink(postForm.value.url);
     this.service.downloadFile(linkObj);
+  }
+
+  private parseFileLink(url: string): string {
+    let fileLink = '';
+    fileLink = url.split('=')[1];
+    console.log(fileLink);
+    return fileLink;
   }
 
 }

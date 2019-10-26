@@ -1,7 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+//const Downloader = require('./downloader');
+const YoutubeMp3Downloader = require("youtube-mp3-downloader");
+const YD = new YoutubeMp3Downloader({
+  "ffmpegPath": "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe",
+  "outputPath": "C:/Users/Duke/angularworkspace/youtube-mp3/temp-output",    // Where should the downloaded and encoded files be stored?
+  "youtubeVideoQuality": "highest",       // What video quality should be used?
+  "queueParallelism": 2,                  // How many parallel downloads/encodes should be started?
+  "progressTimeout": 2000,                // How long should be the interval of the progress reports
+  "outputOptions" : ["-af", "silenceremove=1:0:-50dB"] // Additional output options passend to ffmpeg
+});
 const app = express();
+
+//const dl = new Downloader();
+let i = 0;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -17,10 +29,44 @@ app.use((req,res,next)=>{
 
 app.post('/api/download',(req,res,next)=>{
   console.log(req.body.videoLink);
-
-  res.status(201).json({
-    message:'Post success'
+  YD.download("_GkCJmzXyJA");
+  YD.on("finished", function(err,data){
+    console.log("Hi finished!!!");
+    console.log(JSON.stringify(data));
+      res.status(201).json({
+      message:'Post success'
+    });
   });
+  YD.on("error",function(error){
+    console.log("Lammeeeeeee");
+    console.log(error);
+         res.status(500).json({
+        message:'Post Error'
+      });
+  });
+  // dl.getMP3({videoId:'_GkCJmzXyJA', name:'TestFile.mp3'},function(err, res){
+  //   i++;
+  //   if(err){
+  //     console.log('something wrong');
+  //     console.error(err);
+  //     res.status(500).json({
+  //       message:'Post Error'
+  //     });
+  //   }else{
+  //     console.log("Song "+i+" was downloaded: "+ res.file);
+  //     res.status(201).json({
+  //       message:'Post success'
+  //     });
+  //   }
+  // });
+  // dl.getMP3({videoId:req.body.videoLink, name:'TestFile.mp3'}).then(res=>{
+  //   console.log("Song "+i+" was downloaded: "+ res.file);
+  //   res.status(201).json({
+  //     message:'Post success'
+  //   });
+  // });
+
+
 });
 
 module.exports = app;
