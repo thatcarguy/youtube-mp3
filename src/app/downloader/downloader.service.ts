@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Link } from '../model/link';
 
 
@@ -8,12 +8,24 @@ export class DownloaderService {
 
   constructor (private http: HttpClient) {}
 
-  downloadFile(data: Link) {
+  convertFile(data: Link) :any{
     console.log('inside download service: ' + data);
+    const url = 'http://localhost:3030/api/convert';
+
+
+     return this.http.post<any>(url, data,);
+
+
+  }
+  downloadFile(fileName:string): any {
+    console.log("hfff");
     const url = 'http://localhost:3030/api/download';
-    return this.http.post<any>(url, data, ).subscribe((responseData) => {
-      console.log(responseData.message);
+    const headers = new HttpHeaders();
+    try{
+      return this.http.get(url,{headers, responseType:'blob' as 'json'});
+    }catch(err){
+      console.log("fuffufuf");
       return null;
-    });
+    }
   }
 }
