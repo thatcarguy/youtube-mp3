@@ -17,9 +17,9 @@ export class DownloaderService {
 
 
   }
-  downloadFile(fileName:string): any {
+  downloadFile(fileId:string): any {
     console.log("hfff");
-    const url = 'http://localhost:3030/api/download';
+    const url = 'http://localhost:3030/api/download/'+fileId;
     const headers = new HttpHeaders();
     try{
       return this.http.get(url,{headers, responseType:'blob' as 'json'});

@@ -43,7 +43,7 @@ export class DownloaderComponent implements OnInit {
       const blob = new Blob([response],{type:"audio/mpeg"});
       console.log(blob);
       saveAs(blob,"test.mp3");
-    })
+    });
 
 
   }
