@@ -15,7 +15,7 @@ var Downloader = function() {
     });
 
     self.callbacks = {};
-
+    console.log("hello");
     self.YD.on("finished", function(error, data) {
 
         if (self.callbacks[data.videoId]) {
