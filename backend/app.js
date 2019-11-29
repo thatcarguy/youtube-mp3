@@ -48,11 +48,17 @@ app.post('/api/convert',(req,res,next)=>{
       }
       //const file = data.file;
       console.log("Finished download");
-        res.contentType('application/json');
+      try{
         res.status(200).json({
           fileName: fileName,
           message: "Successfully Converted File"
         });
+      }catch(err){
+        console.log("Error in the res");
+        console.log(err);
+      }
+
+
     });
     YD.on("error",function(error){
       console.log("Lammeeeeeee");
