@@ -1,12 +1,12 @@
 var YoutubeMp3Downloader = require("youtube-mp3-downloader");
-
+const path = require('path');
 var Downloader = function() {
 
     var self = this;
-
+    const ffmpegPath = path.join(__dirname,"lib","ffmpeg.exe");
     //Configure YoutubeMp3Downloader with your settings
     self.YD = new YoutubeMp3Downloader({
-        "ffmpegPath": "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe",        // Where is the FFmpeg binary located?
+        "ffmpegPath": ffmpegPath,        // Where is the FFmpeg binary located?
         "outputPath": "backend/downloads",    // Where should the downloaded and encoded files be stored?
         "youtubeVideoQuality": "highest",       // What video quality should be used?
         "queueParallelism": 1,                  // How many parallel downloads/encodes should be started?

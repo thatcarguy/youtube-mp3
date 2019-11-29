@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const fs = require('fs');
 
 const app = express();
 const Downloader = require('./downloader');
 const dl = new Downloader();
-const filePath = "backend/downloads";
+const filePath = path.join(__dirname,"downloads");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
@@ -22,10 +22,12 @@ app.use((req,res,next)=>{
 
 app.get('/api/download/:fileId',(req,res,next)=>{
   const fileId = req.params.fileId;
-  const fileUrl = filePath + '/'+fileId;
+  const fileUrl = path.join(filePath,fileId);
+  console.log(fileUrl);
   if(fs.existsSync(fileUrl)){
     console.log("inside download for "+fileId);
-    res.download('./backend/downloads/'+fileId,function(err){
+
+    res.download(fileUrl,function(err){
       if(err){
         console.log('error occured');
         console.log(err);
