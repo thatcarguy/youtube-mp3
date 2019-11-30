@@ -3,7 +3,7 @@ const path = require('path');
 var Downloader = function() {
 
     var self = this;
-    const ffmpegPath = path.join("/usr/bin/ffmpeg","ffmpeg");
+    const ffmpegPath = path.join("/opt/ffmpeg/ffmpeg-3.4.2-64bit-static/ffmpeg");
     //Configure YoutubeMp3Downloader with your settings
     self.YD = new YoutubeMp3Downloader({
         "ffmpegPath": ffmpegPath,        // Where is the FFmpeg binary located?
