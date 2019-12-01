@@ -28,7 +28,7 @@ var Downloader = function() {
 
     self.YD.on("error", function(error, data) {
 
-        console.error(error + " on videoId " + data.videoId);
+        console.error(error + " on videoId " + data);
 
         if (self.callbacks[data.videoId]) {
             self.callbacks[data.videoId](error, data);

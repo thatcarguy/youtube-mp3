@@ -58,6 +58,7 @@ app.post('/api/convert',(req,res,next)=>{
   const videoLink = req.body.videoLink;
   if(videoLink){
     const fileName = videoLink+".mp3";
+    console.log("about to call getMp3");
     dl.getMP3({videoId: videoLink, name:fileName},function(err,response){
       i++;
       if(err){
