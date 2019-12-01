@@ -3,11 +3,12 @@ const path = require('path');
 var Downloader = function() {
 
     var self = this;
-    const ffmpegPath = path.join("/usr/bin/ffmpeg","ffmpeg");
+    const ffmpegPath = path.join("/opt/ffmpeg/ffmpeg-3.4.2-64bit-static/ffmpeg");
+    const downloadPath = path.join(__dirname,"downloads");
     //Configure YoutubeMp3Downloader with your settings
     self.YD = new YoutubeMp3Downloader({
         "ffmpegPath": ffmpegPath,        // Where is the FFmpeg binary located?
-        "outputPath": "backend/downloads",    // Where should the downloaded and encoded files be stored?
+        "outputPath": downloadPath,    // Where should the downloaded and encoded files be stored?
         "youtubeVideoQuality": "highest",       // What video quality should be used?
         "queueParallelism": 1,                  // How many parallel downloads/encodes should be started?
         "progressTimeout": 2000,                // How long should be the interval of the progress reports
@@ -28,7 +29,7 @@ var Downloader = function() {
 
     self.YD.on("error", function(error, data) {
 
-        console.error(error + " on videoId " + data.videoId);
+        console.error(error + " on videoId " + data);
 
         if (self.callbacks[data.videoId]) {
             self.callbacks[data.videoId](error, data);

@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
+    "m3u8-parser": "^4.4.0",
     "mongoose": "^5.7.5",
     "rxjs": "~6.2.0",
     "youtube-mp3-downloader": "^0.6.3",

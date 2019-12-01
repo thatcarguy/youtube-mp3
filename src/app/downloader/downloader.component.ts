@@ -12,12 +12,14 @@ export class DownloaderComponent implements OnInit {
 
   downloadLink: string;
   videoUrl = '';
+  isLoading = false;
   constructor(private service: DownloaderService) { }
 
   ngOnInit() {
   }
 
   onConvertVideo(postForm: NgForm) {
+    this.isLoading = true;
     console.log(postForm);
     const linkObj = new Link();
     linkObj.videoLink = this.parseFileLink(postForm.value.url);
@@ -26,23 +28,18 @@ export class DownloaderComponent implements OnInit {
     this.service.convertFile(linkObj).subscribe((response) =>{
       console.log("Hereeeeee");
       this.downloadLink = response.fileName;
-
-      // if(response){
-      //   const blob = new Blob([response],{type:"audio/mpeg"});
-      //   saveAs(blob,"test.mp3");
-      // }else{
-      //   console.log("ddd");
-      // }
-
+      this.isLoading = false;
     });
   }
 
   onDownloadMp3():void {
-    //const blob = new Blob([this.service.downloadFile(this.downloadLink)],{type:'audio/mpeg'});
+    this.isLoading = true;
     this.service.downloadFile(this.downloadLink).subscribe(response =>{
       const blob = new Blob([response],{type:"audio/mpeg"});
+      this.isLoading = false;
       console.log(blob);
       saveAs(blob,"test.mp3");
+
     });
 
 
@@ -51,8 +48,13 @@ export class DownloaderComponent implements OnInit {
 
 
   private parseFileLink(url: string): string {
+    console.log(url);
     let fileLink = '';
-    fileLink = url.split('=')[1];
+    if(url.indexOf('=')>-1){
+      fileLink = url.split('=')[1];
+    }else{
+      fileLink = url.split('be/')[1];
+    }
     console.log(fileLink);
     return fileLink;
   }
