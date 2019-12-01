@@ -1,9 +1,11 @@
-<div style="text-align: center;">
-  Youtube MP3 Converter
-</div>
+<mat-toolbar color="primary">
+  <span><a>Youtube Mp3 Converter</a>
+  </span>
+</mat-toolbar>
+<mat-spinner *ngIf='isLoading'></mat-spinner>
 <div style="margin-top: 1rem">
 <mat-card>
-  <div style="text-align: center">
+
     <form (submit)="onConvertVideo(downloadForm)" #downloadForm="ngForm">
       <mat-form-field style="width:40%">
         <input
@@ -27,10 +29,9 @@
         Convert Video
       </button>
     </form>
-  </div>
   </mat-card>
   <hr />
-  <div *ngIf="downloadLink">
-      <a href="javascript:void(0);" (click)="onDownloadMp3()">DownLoad Mp3</a>
+  <div *ngIf="downloadLink" style="align-content:center">
+      <button mat-raised-button color="primary" (click)="onDownloadMp3()">DownLoad Mp3</button>
   </div>
 </div>

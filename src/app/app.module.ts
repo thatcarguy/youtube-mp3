@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatExpansionModule} from '@angular/material';
+import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule,
+  MatExpansionModule, MatProgressSpinnerModule} from '@angular/material';
 import { HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -24,6 +25,8 @@ import { DownloaderService } from './downloader/downloader.service';
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule
   ],
   providers: [DownloaderService],
   bootstrap: [AppComponent]
