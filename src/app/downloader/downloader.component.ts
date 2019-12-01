@@ -38,15 +38,14 @@ export class DownloaderComponent implements OnInit {
     const linkObj = new Link();
     linkObj.videoLink = this.parseFileLink(postForm.url);
     this.service.convertFile(linkObj).subscribe((response) => {
-      if (response.error) {
         this.isLoading = false;
-      } else {
         this.isDownloadReady = true;
         this.downloadLink = response.fileName;
         this.videoTitle = response.fileTitle;
-      }
+
     }, error =>{
       console.log("Error occured");
+      this.isDownloadReady = false;
       this.isLoading = false;
     });
   }
@@ -56,11 +55,12 @@ export class DownloaderComponent implements OnInit {
     this.service.downloadFile(this.downloadLink).subscribe(response => {
       const blob = new Blob([response], {type: "audio/mpeg"});
       this.isLoading = false;
-      console.log(blob);
       saveAs(blob, this.videoTitle);
       this.isDownloadReady = false;
+      this.resetForm();
     }, error =>{
       console.log("Eror in the download");
+      this.isDownloadReady = false;
       this.isLoading = false;
     });
   }
