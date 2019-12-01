@@ -1,3 +1,11 @@
 mat-spinner {
   margin: auto;
 }
+mat-form-field,
+textarea {
+  width:100%;
+}
+.button{
+  margin: auto;
+  text-align: center;
+}

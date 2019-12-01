@@ -70,6 +70,7 @@ app.post('/api/convert',(req,res,next)=>{
           res.status(200).json({
             fileName: fileName,
             filePath: response.file,
+            fileTitle: response.videoTitle,
             message: "Successfully Converted File"
           });
         }catch(err){

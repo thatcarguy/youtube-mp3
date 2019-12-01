@@ -4,7 +4,7 @@ import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule,
   MatExpansionModule, MatProgressSpinnerModule} from '@angular/material';
 import { HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -20,6 +20,7 @@ import { DownloaderService } from './downloader/downloader.service';
     BrowserModule,
     HttpClientModule,
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
