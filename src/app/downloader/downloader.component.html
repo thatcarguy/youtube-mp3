@@ -2,11 +2,12 @@
   <span><a>Youtube Mp3 Converter</a>
   </span>
 </mat-toolbar>
-<mat-spinner *ngIf='isLoading'></mat-spinner>
+
 <div style="margin-top: 1rem">
+<mat-spinner *ngIf='isLoading'></mat-spinner>
 <mat-card>
 
-    <form (submit)="onConvertVideo(downloadForm)" #downloadForm="ngForm">
+    <!-- <form (submit)="onConvertVideo(downloadForm)" #downloadForm="ngForm">
       <mat-form-field style="width:40%">
         <input
           matInput
@@ -28,10 +29,29 @@
         [disabled]="!downloadForm.valid">
         Convert Video
       </button>
+    </form> -->
+    <form [formGroup]="form" *ngIf="!isLoading">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Video Url"
+          formControlName="url"
+        />
+        <button mat-button *ngIf="form.get('url').value" matSuffix mat-icon-button aria-label="Clear" (click)="resetForm()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('url').invalid">Please Enter Valid Youtube Url.</mat-error>
+      </mat-form-field>
+      <div class="button" *ngIf="!isDownloadReady else download">
+        <button mat-raised-button color="accent" [disabled]="!form.valid" type="button" (click)="onConvertVideo(form.value)">Convert Video</button>
+      </div>
+      <ng-template #download>
+        <div class="button">
+          <button mat-raised-button color="accent" (click)="onDownloadMp3()">Download Video</button>
+        </div>
+      </ng-template>
+
     </form>
   </mat-card>
-  <hr />
-  <div *ngIf="downloadLink" style="align-content:center">
-      <button mat-raised-button color="primary" (click)="onDownloadMp3()">DownLoad Mp3</button>
-  </div>
 </div>
