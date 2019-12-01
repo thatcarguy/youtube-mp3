@@ -38,6 +38,9 @@
           placeholder="Video Url"
           formControlName="url"
         />
+        <button mat-button *ngIf="form.get('url').value" matSuffix mat-icon-button aria-label="Clear" (click)="resetForm()">
+            <mat-icon>close</mat-icon>
+        </button>
         <mat-error *ngIf="form.get('url').invalid">Please Enter Valid Youtube Url.</mat-error>
       </mat-form-field>
       <div class="button" *ngIf="!isDownloadReady else download">

@@ -56,10 +56,13 @@ export class DownloaderComponent implements OnInit {
 
     });
 
-
   }
 
-
+  resetForm(): void {
+    this.isLoading = false;
+    this.isDownloadReady = false;
+    this.form.reset();
+  }
 
   private parseFileLink(url: string): string {
     console.log(url);
