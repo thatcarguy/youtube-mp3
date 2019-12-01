@@ -3,8 +3,8 @@ const path = require('path');
 var Downloader = function() {
 
     var self = this;
-   // const ffmpegPath = path.join("/opt/ffmpeg/ffmpeg-3.4.2-64bit-static/ffmpeg");
-    const ffmpegPath = "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe";
+    const ffmpegPath = path.join("/opt/ffmpeg/ffmpeg-3.4.2-64bit-static/ffmpeg");
+    //const ffmpegPath = "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe";
     const downloadPath = path.join(__dirname,"downloads");
     //Configure YoutubeMp3Downloader with your settings
     self.YD = new YoutubeMp3Downloader({

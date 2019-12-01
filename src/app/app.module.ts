@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule,
-  MatExpansionModule, MatProgressSpinnerModule, MatIconModule} from '@angular/material';
+  MatExpansionModule, MatProgressSpinnerModule, MatIconModule, MatDialogModule} from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -31,7 +31,8 @@ import { ErrorInterceptor } from './error.interceptor';
     MatButtonModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
