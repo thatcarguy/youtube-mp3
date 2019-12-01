@@ -26,7 +26,7 @@ export class DownloaderComponent implements OnInit {
             [
               Validators.required,
               Validators.minLength(9),
-              Validators.pattern('^(https?\\:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.?be)\\/.+$')
+              Validators.pattern('^(https?\\:\\/\\/)?(www\\.)?(youtube\\.com|youtu\\.?be|yout\\.?be)\\/.+$')
             ]
           ]
     });

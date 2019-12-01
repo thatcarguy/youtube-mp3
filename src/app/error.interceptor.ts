@@ -15,7 +15,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.log("Error caught");
+        console.log('Error caught');
         let errorMessage = 'An unknown error occured';
         if (error.error.message) {
           errorMessage = error.error.message;
