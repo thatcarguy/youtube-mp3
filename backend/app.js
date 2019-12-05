@@ -48,7 +48,7 @@ app.get('/api/download/:fileId',(req,res,next)=>{
   }
 });
 
-
+console.log("Hello");
 /**
  * Look at what I am doing for the page upload about returning the file path etc.
  */
