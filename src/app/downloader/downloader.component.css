@@ -9,3 +9,11 @@ textarea {
   margin: auto;
   text-align: center;
 }
+.margin {
+  margin-right:10px;
+  margin-left:10px;
+}
+form {
+  max-width: 1200px;
+  margin: auto;
+}
