@@ -41,7 +41,8 @@ var Downloader = function() {
     });
     self.YD.on("progress",function(progress){
       console.log(JSON.stringify(progress));
-    })
+      return progress;
+    });
 
 };
 
