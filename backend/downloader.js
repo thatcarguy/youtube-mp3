@@ -4,7 +4,7 @@ var Downloader = function() {
 
     var self = this;
     const ffmpegPath = path.join("/opt/ffmpeg/ffmpeg-3.4.2-64bit-static/ffmpeg");
-    //const ffmpegPath = "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe";
+   // const ffmpegPath = "C:\\Users\\Duke\\Downloads\\ffmpeg-20191025-155508c-win64-static\\ffmpeg-20191025-155508c-win64-static\\bin\\ffmpeg.exe";
     const downloadPath = path.join(__dirname,"downloads");
     //Configure YoutubeMp3Downloader with your settings
     self.YD = new YoutubeMp3Downloader({
@@ -40,6 +40,11 @@ var Downloader = function() {
 
     });
 
+    self.YD.on("progress", function(progress){
+      console.log(JSON.stringify(progress));
+      return progress;
+    });
+
 };
 
 Downloader.prototype.getMP3 = function(track, callback){
@@ -50,7 +55,12 @@ Downloader.prototype.getMP3 = function(track, callback){
     self.callbacks[track.videoId] = callback;
     // Trigger download
     self.YD.download(track.videoId, track.name);
+    // self.YD.on("progress",function(progress){
+    //   console.log("jel;");
+    // });
 
 };
+
+//Downloader.prototype.progress =
 
 module.exports = Downloader;

@@ -61,6 +61,7 @@ app.post('/api/convert',(req,res,next)=>{
     console.log("about to call getMp3");
     dl.getMP3({videoId: videoLink, name:fileName},function(err,response){
       i++;
+
       if(err){
         console.log("Something went wrong");
         console.log(err);
@@ -78,7 +79,9 @@ app.post('/api/convert',(req,res,next)=>{
           console.log(err);
         }
       }
-    })
+    });
+
+
   }
   else{
     console.log("No video found");
